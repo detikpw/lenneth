@@ -9,6 +9,7 @@ verify_ssl = true
 
 requests = "*"
 pprint = "*"
+pyfiglet = "*"
 
 
 [requires]

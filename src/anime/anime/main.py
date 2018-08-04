@@ -13,6 +13,9 @@ __version__ = "0.1.0"
 
 
 def main():
+    from pyfiglet import Figlet
+    f = Figlet(font='slant')
+    print(f.renderText('ANIME-CLI'))
     now = datetime.datetime.now()
     variables = {
         'media_season': 'SUMMER',
