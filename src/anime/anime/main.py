@@ -2,6 +2,7 @@
 import requests
 import pprint
 import json
+import datetime
 from pkg.queries import QUERY
 """
 Module Anime
@@ -12,11 +13,11 @@ __version__ = "0.1.0"
 
 
 def main():
-    # Here we define our query as a multi-line string
-
-    # Define our query variables and values that will be used in the query request
+    now = datetime.datetime.now()
     variables = {
-        'media_season': 'SUMMER'
+        'media_season': 'SUMMER',
+        'season_year': now.year,
+        'sort': 'SCORE_DESC'
     }
 
     url = 'https://graphql.anilist.co'
