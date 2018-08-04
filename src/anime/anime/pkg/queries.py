@@ -8,6 +8,12 @@ ANIME = '''
                 title {
                     romaji
                 }
+                averageScore
+                genres
+                popularity
+                trending
+                episodes
+                duration
             }
         }
     }
