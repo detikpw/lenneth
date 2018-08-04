@@ -3,7 +3,7 @@ import requests
 import pprint
 import json
 import datetime
-from pkg.queries import QUERY
+from pkg.queries import ANIME
 """
 Module Anime
 """
@@ -23,9 +23,9 @@ def main():
     url = 'https://graphql.anilist.co'
 
     # Make the HTTP Api request
-    response = requests.post(url, json={'query': QUERY, 'variables': variables})
+    response = requests.post(url, json={'query': ANIME, 'variables': variables})
     pp = pprint.PrettyPrinter(indent=1)
-    pp.pprint(response.json())
+    pp.pprint(response.json()['data']['Page']['media'])
 
 if __name__ == "__main__":
     """ This is executed when run from the command line """
