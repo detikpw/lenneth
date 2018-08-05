@@ -1,7 +1,16 @@
 import pprint
+from toolz import curry
+from toolz.curried import map, filter, pipe
 from PyInquirer import prompt, style_from_dict, Token, Separator
 
-def show_questions(anime_titles):
+_get_title = lambda anime: anime['title']['romaji']
+
+def _get_anime_by_title(anime_list):
+    return lambda selected_title: list(
+        filter(lambda anime: anime['title']['romaji'] == selected_title)(anime_list)
+    )
+
+def show_questions(anime_list):
     style = style_from_dict({
         Token.Separator: '#6C6C6C',
         Token.QuestionMark: '#FF9D00 bold',
@@ -18,11 +27,15 @@ def show_questions(anime_titles):
             'name': 'anime_title',
             # TODO remove this hard code
             'message': 'This is top ten anime in summer 2018, which anime that you want to see detail?',
-            'choices': anime_titles
+            'choices': map(_get_title)(anime_list)
         },
     ]
-
     answers = prompt(questions, style=style)
     pp = pprint.PrettyPrinter(indent=1)
-    pp.pprint(answers)
+    pipe(
+        answers,
+        lambda answers: answers['anime_title'],
+        _get_anime_by_title(anime_list),
+        pp.pprint
+    )
 

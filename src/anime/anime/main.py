@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from toolz.curried import map, pipe
+from toolz.curried import pipe
 from pkg.title import show_title
 from pkg.fetch import get_current_season_top_ten_anime
 from pkg.inquiries import show_questions
@@ -14,11 +14,9 @@ __version__ = "0.1.0"
 
 def main():
     show_title();
-    get_title = lambda anime: anime['title']['romaji']
     pipe(
         None,
         get_current_season_top_ten_anime,
-        map(get_title),
         show_questions
     )
 
